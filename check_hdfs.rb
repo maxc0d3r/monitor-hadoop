@@ -94,5 +94,5 @@ if val_search[5] > criticalunreplicatedblocks.to_f
   returnval=2
 end
 
-puts "#{msg}|#{val_search[0]} #{val_search[1]} #{val_search[2]} #{val_search[3]} #{val_search[4]} #{val_search[5]}"
+puts "#{msg}|capacity=#{val_search[0]} dfsused=#{val_search[1]} dfsremaining=#{val_search[2]} dfsused%=#{val_search[3]} dfsremaining%=#{val_search[4]} unreplicatedblocks=#{val_search[5]}"
 exit returnval
