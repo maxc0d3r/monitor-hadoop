@@ -33,19 +33,19 @@ criticaltts = options[:criticaltts]
 page = Nokogiri::HTML(open("#{url}"))
 count_of_tts = 0
 page.css('table.datatable tr td[2]').each do |el|
-   count_of_tts++
+   count_of_tts+=1
 end
 
-msg = "Ok: There are #{count_of_tts}"
+msg = "Ok: There are #{count_of_tts} tasktrackers"
 returnval=0
 
-if count_of_tts < warningtts
-  msg = "Warning: There are only #{count_of_tts} available, while you needed #{warningtts}"
+if count_of_tts < warningtts.to_i
+  msg = "Warning: There are only #{count_of_tts} tasktrackers available, while you needed #{warningtts}"
   returnval=1
 end
 
-if count_of_tts < criticaltts
-  msg = "Critical: There are only #{count_of_tts} available, while you needed #{criticaltts}"
+if count_of_tts < criticaltts.to_i
+  msg = "Critical: There are only #{count_of_tts} tasktrackers available, while you needed #{criticaltts}"
   returnval=2
 end
 
