@@ -31,6 +31,24 @@ warningtts = options[:warningtts]
 criticaltts = options[:criticaltts]
 
 page = Nokogiri::HTML(open("#{url}"))
+count_of_tts = 0
 page.css('table.datatable tr td[2]').each do |el|
-   puts el.text
+   count_of_tts++
 end
+
+msg = "Ok: There are #{count_of_tts}"
+returnval=0
+
+if count_of_tts < warningtts
+  msg = "Warning: There are only #{count_of_tts} available, while you needed #{warningtts}"
+  returnval=1
+end
+
+if count_of_tts < criticaltts
+  msg = "Critical: There are only #{count_of_tts} available, while you needed #{criticaltts}"
+  returnval=2
+end
+
+
+puts "#{msg}|numtts=#{count_of_tts}"
+exit returnval
